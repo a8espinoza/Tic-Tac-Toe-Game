@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class GameMenu extends JFrame implements ActionListener{
@@ -17,6 +18,10 @@ public class GameMenu extends JFrame implements ActionListener{
 	JPanel gameboard;
 	JButton a1, a2, a3, b1, b2, b3, c1, c2, c3;
 	JButton[] tiles = new JButton[9];
+	JTextField playerTurnField;
+	boolean playerTurn; //true = p1, false = p2
+	GameFunction functionalGame = new GameFunction();
+	int player1, player2;
 	
 	//fonts and color management 
 	Font mainFont = new Font("Verdana", Font.PLAIN, 30);
@@ -45,7 +50,7 @@ public class GameMenu extends JFrame implements ActionListener{
 		gameboard.setBackground(darkGrayColor);
 		
 		//generate game tiles
-		a1 = new JButton(" ");
+		a1 = new JButton();
 		a2 = new JButton();
 		a3 = new JButton();
 		b1 = new JButton();
@@ -71,14 +76,23 @@ public class GameMenu extends JFrame implements ActionListener{
 			tiles[i].setBackground(buttonLightGray);
 			tiles[i].setBorderPainted(false);
 		}
+		
+		playerTurn = true;
+		playerTurnField = new JTextField();
+		playerTurnField.setBounds(10, 10, 60, 30);
+		playerTurnField.setEditable(false);
+		playerTurnField.setBackground(new Color(104,116,85));
+		playerTurnField.setForeground(new Color(56,63,47));
+		playerTurnField.setText("Player 1");
+
 
 		
 
 		//add tiles to panel, then panel to frame
-		gameboard.add(a1);
-		gameboard.add(b1);
-		gameboard.add(c1);
-		gameboard.add(a2);
+		gameboard.add(a1); 			//	  a b c 
+		gameboard.add(b1);			//	 1	
+		gameboard.add(c1);			//	 2
+		gameboard.add(a2);			//	 3
 		gameboard.add(b2);
 		gameboard.add(c2);
 		gameboard.add(a3);
@@ -87,12 +101,178 @@ public class GameMenu extends JFrame implements ActionListener{
 
 		
 		gameFrame.add(gameboard);
+		gameFrame.add(playerTurnField);
+		
+		player1 = 0;
+		player2 = 1;
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//9 primary  buttons
+		if(e.getSource() == a1) {
+			//change button
+			a1.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				a1.setText("X");
+				functionalGame.nextTurn(player1, 0, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				a1.setText("O");
+				functionalGame.nextTurn(player2, 0, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+		
+		if(e.getSource() == b1) {
+			//change button
+			b1.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				b1.setText("X");
+				functionalGame.nextTurn(player1, 0, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				b1.setText("O");
+				functionalGame.nextTurn(player2, 0, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == c1) {
+			//change button
+			c1.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				c1.setText("X");
+				functionalGame.nextTurn(player1, 0, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				c1.setText("O");
+				functionalGame.nextTurn(player2, 0, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == a2) {
+			//change button
+			a2.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				a2.setText("X");
+				functionalGame.nextTurn(player1, 1, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				a2.setText("O");
+				functionalGame.nextTurn(player2, 1, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == b2) {
+			//change button
+			b2.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				b2.setText("X");
+				functionalGame.nextTurn(player1, 1, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				b2.setText("O");
+				functionalGame.nextTurn(player2, 1, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == c2) {
+			//change button
+			c2.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				c2.setText("X");
+				functionalGame.nextTurn(player1, 1, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				c2.setText("O");
+				functionalGame.nextTurn(player2, 1, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == a3) {
+			//change button
+			a3.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				a3.setText("X");
+				functionalGame.nextTurn(player1, 2, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				a3.setText("O");
+				functionalGame.nextTurn(player2, 2, 0);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == b3) {
+			//change button
+			b3.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				b3.setText("X");
+				functionalGame.nextTurn(player1, 2, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				b3.setText("O");
+				functionalGame.nextTurn(player2, 2, 1);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
+		if(e.getSource() == c3) {
+			//change button
+			c3.setEnabled(false);
+			
+			//game functionality
+			if(playerTurn) { 		//player 1
+				c3.setText("X");
+				functionalGame.nextTurn(player1, 2, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 2");
+			}else {					//player 2
+				c3.setText("O");
+				functionalGame.nextTurn(player2, 2, 2);
+				playerTurn = !playerTurn;
+				playerTurnField.setText("player 1");
+			}
+		}
+
 		
 	}
 }

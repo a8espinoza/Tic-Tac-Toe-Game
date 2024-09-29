@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,6 +58,7 @@ public class MainMenu implements ActionListener{
 	
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		MainMenu menu = new MainMenu();
 		//GameMenu game = new GameMenu(null);
 
@@ -67,6 +67,7 @@ public class MainMenu implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == multiPlayer) {
 			location = menuFrame.getLocation();
+			@SuppressWarnings("unused")
 			GameMenu gameMenu = new GameMenu(location);
 			menuFrame.setVisible(false); //disable for comparison
 		}
