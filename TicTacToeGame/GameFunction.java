@@ -9,8 +9,8 @@ public class GameFunction {
 	int player1, player2;
  	
 	public GameFunction() {
-		player1 = 0;
-		player2 = 1;
+		player1 = 1;
+		player2 = 2;
 		
 		players[0] = player1;
 		players[1] = player2;
@@ -36,13 +36,16 @@ public class GameFunction {
 			for(int j=0; j<3; j++) {
 				if(functionalBoard[i][j] == givenPlayer) {
 						count++;
-				}
+						System.out.println("Count: " + count);
+				}else break;
 			}
 			//after iterating through one row: check if its a winner
 			if(count >= 3) {
 				return true;
 			}else {
 				count = 0;
+				System.out.println("Count: " + count);
+
 			}
 		}
 		//check columns
@@ -50,13 +53,17 @@ public class GameFunction {
 			for(int j=0; j<3; j++) {
 				if(functionalBoard[j][i] == givenPlayer) {
 						count++;
-				}
+						System.out.println("Count: " + count);
+
+				}else break;
 			}
 			//after iterating through one column: check if its a winner
 			if(count >= 3) {
 				return true;
 			}else {
 				count = 0;
+				System.out.println("Count: " + count);
+
 			}
 		}
 

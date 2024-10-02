@@ -20,6 +20,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	JButton[] tiles = new JButton[9];
 	JTextField playerTurnField;
 	boolean playerTurn; //true = p1, false = p2
+	boolean winner;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2;
 	
@@ -103,30 +104,41 @@ public class GameMenu extends JFrame implements ActionListener{
 		gameFrame.add(gameboard);
 		gameFrame.add(playerTurnField);
 		
-		player1 = 0;
-		player2 = 1;
+		player1 = 1;
+		player2 = 2;
+		winner = false;
 
+	}
+	
+	public void checkForWinner(boolean winner) {
+		if(winner) {
+			//do other winner work here
+			System.out.println(winner);
+			playerTurnField.setText("you win!!");
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//9 primary  buttons
-		if(e.getSource() == a1) {
-			//change button
-			a1.setEnabled(false);
-			
+		if(e.getSource() == a1) {			
 			//game functionality
 			if(playerTurn) { 		//player 1
 				a1.setText("X");
-				functionalGame.nextTurn(player1, 0, 0);
+				winner = functionalGame.nextTurn(player1, 0, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				a1.setText("O");
-				functionalGame.nextTurn(player2, 0, 0);
+				winner = functionalGame.nextTurn(player2, 0, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			a1.setEnabled(false);
+			checkForWinner(winner);
+
 		}
 		
 		if(e.getSource() == b1) {
@@ -136,15 +148,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				b1.setText("X");
-				functionalGame.nextTurn(player1, 0, 1);
+				winner = functionalGame.nextTurn(player1, 0, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				b1.setText("O");
-				functionalGame.nextTurn(player2, 0, 1);
+				winner = functionalGame.nextTurn(player2, 0, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			b1.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == c1) {
@@ -154,15 +170,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				c1.setText("X");
-				functionalGame.nextTurn(player1, 0, 2);
+				winner = functionalGame.nextTurn(player1, 0, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				c1.setText("O");
-				functionalGame.nextTurn(player2, 0, 2);
+				winner = functionalGame.nextTurn(player2, 0, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			c1.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == a2) {
@@ -172,15 +192,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				a2.setText("X");
-				functionalGame.nextTurn(player1, 1, 0);
+				winner = functionalGame.nextTurn(player1, 1, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				a2.setText("O");
-				functionalGame.nextTurn(player2, 1, 0);
+				winner = functionalGame.nextTurn(player2, 1, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			a2.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == b2) {
@@ -190,15 +214,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				b2.setText("X");
-				functionalGame.nextTurn(player1, 1, 1);
+				winner = functionalGame.nextTurn(player1, 1, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				b2.setText("O");
-				functionalGame.nextTurn(player2, 1, 1);
+				winner = functionalGame.nextTurn(player2, 1, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			b2.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == c2) {
@@ -208,15 +236,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				c2.setText("X");
-				functionalGame.nextTurn(player1, 1, 2);
+				winner = functionalGame.nextTurn(player1, 1, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				c2.setText("O");
-				functionalGame.nextTurn(player2, 1, 2);
+				winner = functionalGame.nextTurn(player2, 1, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			c2.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == a3) {
@@ -226,15 +258,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				a3.setText("X");
-				functionalGame.nextTurn(player1, 2, 0);
+				winner = functionalGame.nextTurn(player1, 2, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				a3.setText("O");
-				functionalGame.nextTurn(player2, 2, 0);
+				winner = functionalGame.nextTurn(player2, 2, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			a3.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == b3) {
@@ -244,15 +280,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				b3.setText("X");
-				functionalGame.nextTurn(player1, 2, 1);
+				winner = functionalGame.nextTurn(player1, 2, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				b3.setText("O");
-				functionalGame.nextTurn(player2, 2, 1);
+				winner = functionalGame.nextTurn(player2, 2, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			b3.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		if(e.getSource() == c3) {
@@ -262,15 +302,19 @@ public class GameMenu extends JFrame implements ActionListener{
 			//game functionality
 			if(playerTurn) { 		//player 1
 				c3.setText("X");
-				functionalGame.nextTurn(player1, 2, 2);
+				winner = functionalGame.nextTurn(player1, 2, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 2");
 			}else {					//player 2
 				c3.setText("O");
-				functionalGame.nextTurn(player2, 2, 2);
+				winner = functionalGame.nextTurn(player2, 2, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("player 1");
 			}
+			
+			//edit button and check for winner
+			c3.setEnabled(false);
+			checkForWinner(winner);
 		}
 
 		
