@@ -113,8 +113,10 @@ public class GameMenu extends JFrame implements ActionListener{
 	public void checkForWinner(boolean winner) {
 		if(winner) {
 			//do other winner work here
-			System.out.println(winner);
-			playerTurnField.setText("you win!!");
+			for(int i=0; i<9; i++) {
+				tiles[i].setEnabled(false);
+			}
+			System.out.println("Winner found");
 		}
 	}
 

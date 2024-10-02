@@ -37,7 +37,8 @@ public class GameFunction {
 				if(functionalBoard[i][j] == givenPlayer) {
 						count++;
 						System.out.println("Count: " + count);
-				}else break;
+				}
+				//else break;
 			}
 			//after iterating through one row: check if its a winner
 			if(count >= 3) {
@@ -55,20 +56,35 @@ public class GameFunction {
 						count++;
 						System.out.println("Count: " + count);
 
-				}else break;
+				}
+				//else break;
 			}
 			//after iterating through one column: check if its a winner
 			if(count >= 3) {
 				return true;
 			}else {
 				count = 0;
-				System.out.println("Count: " + count);
+				//System.out.println("Count: " + count);
 
 			}
 		}
 
-		//check diagonals
-		//do this part later because its hurting my brain
+		//check top down  diagonal
+		if(functionalBoard[0][0] == givenPlayer) {
+			if(functionalBoard[1][1] == givenPlayer) {
+				if(functionalBoard[2][2] == givenPlayer) {
+					return true;
+				}
+			}
+		}
+		//check bottom up  diagonal
+		if(functionalBoard[0][2] == givenPlayer) {
+			if(functionalBoard[1][1] == givenPlayer) {
+				if(functionalBoard[2][0] == givenPlayer) {
+					return true;
+				}
+			}
+		}
 		
 		//if no winner found:
 		return false;
