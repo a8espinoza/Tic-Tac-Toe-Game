@@ -23,6 +23,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	boolean winner;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2;
+	Point location;
 	
 	//fonts and color management 
 	Font mainFont = new Font("Verdana", Font.PLAIN, 30);
@@ -117,6 +118,13 @@ public class GameMenu extends JFrame implements ActionListener{
 				tiles[i].setEnabled(false);
 			}
 			System.out.println("Winner found");
+			
+			//open win menu
+			location = gameFrame.getLocation();
+			@SuppressWarnings("unused")
+			WinMenu winMenu = new WinMenu(location);
+			gameFrame.setVisible(false); //disable for comparison
+
 		}
 	}
 
