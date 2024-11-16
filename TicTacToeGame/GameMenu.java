@@ -2,8 +2,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InterruptedIOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,11 +22,15 @@ public class GameMenu extends JFrame implements ActionListener{
 	JButton a1, a2, a3, b1, b2, b3, c1, c2, c3;
 	JButton[] tiles = new JButton[9];
 	JTextField playerTurnField;
+	JTextField gameNumField, scoreField;
+	JTextField[] textFields = new JTextField[3];
 	boolean playerTurn; //true = p1, false = p2
 	boolean winner;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2;
+	int gameNum, player1Score, player2Score;
 	Point location;
+	
 	
 	//fonts and color management 
 	Font mainFont = new Font("Verdana", Font.PLAIN, 30);
@@ -37,7 +43,11 @@ public class GameMenu extends JFrame implements ActionListener{
 	Color darkGrayColor = new Color(35,35,35); 
 	
 	//constructor
-	public GameMenu(Point location) {
+	public GameMenu(Point location, int gameNum, int player1Score, int player2Score) {
+		this.gameNum = gameNum;
+		this.player1Score = player1Score;
+		this.player2Score = player2Score;
+		
 		 //Generate Frame
 		gameFrame = new JFrame("Game");
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,16 +97,35 @@ public class GameMenu extends JFrame implements ActionListener{
 			
 		}
 		
-		playerTurn = true;
+		//All Text fields
 		playerTurnField = new JTextField();
+		gameNumField = new JTextField();
+		scoreField = new JTextField(); 
+		//gameNum = 1;
+
+		textFields[0] = playerTurnField;
+		textFields[1] = gameNumField;
+		textFields[2] = scoreField;
+		
+		for(int i=0; i<3; i++) {
+			textFields[i].setEditable(false);
+			textFields[i].setBackground(buttonLightGray);
+			textFields[i].setForeground(buttonTextBlack);
+			textFields[i].setBorder(new EmptyBorder(0, 0, 0, 0));
+			textFields[i].setHorizontalAlignment((int) CENTER_ALIGNMENT);
+			textFields[i].setFont(subFont);
+		}
+		//playerTurnField
 		playerTurnField.setBounds(50, 25, 125, 50);
-		playerTurnField.setEditable(false);
-		playerTurnField.setBackground(buttonLightGray);
-		playerTurnField.setForeground(buttonTextBlack);
-		playerTurnField.setBorder(new EmptyBorder(0, 0, 0, 0));
-		playerTurnField.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 		playerTurnField.setText("Player 1");
-		playerTurnField.setFont(subFont);
+		playerTurn = true;
+		//gameNumField
+		gameNumField.setBounds(200, 25, 125, 50);
+		gameNumField.setText("Game: " + this.gameNum);
+		//scoreField
+		scoreField.setBounds(350, 25, 125, 50);
+		scoreField.setText(this.player1Score + " to " + this.player2Score);
+
 
 
 		
@@ -115,10 +144,14 @@ public class GameMenu extends JFrame implements ActionListener{
 		
 		gameFrame.add(gameboard);
 		gameFrame.add(playerTurnField);
+		gameFrame.add(gameNumField);
+		gameFrame.add(scoreField);
 		
 		player1 = 1;
 		player2 = 2;
 		winner = false;
+		
+		System.out.println("GameMenu: gameNum: " + this.gameNum + " player1Score: "+ this.player1Score+ " player2Score: "+this.player2Score);
 
 	}
 	
@@ -133,7 +166,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			//open win menu
 			location = gameFrame.getLocation();
 			@SuppressWarnings("unused")
-			WinMenu winMenu = new WinMenu(location, playerTurn);
+			WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score);
 			gameFrame.setVisible(false); //disable for comparison
 
 		}

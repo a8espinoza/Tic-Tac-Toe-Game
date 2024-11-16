@@ -68,7 +68,7 @@ public class MainMenu implements ActionListener{
 		if(e.getSource() == multiPlayer) {
 			location = menuFrame.getLocation();
 			@SuppressWarnings("unused")
-			GameMenu gameMenu = new GameMenu(location);
+			GameMenu gameMenu = new GameMenu(location, 1, 0, 0);
 			menuFrame.setVisible(false); //disable for comparison
 		}
 	}
