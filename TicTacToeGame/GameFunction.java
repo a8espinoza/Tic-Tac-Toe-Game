@@ -22,8 +22,10 @@ public class GameFunction {
 		functionalBoard[xPos][yPos] = givenPlayer;
 		
 		//if given player won: end game
-		return checkForWinner(givenPlayer);
+		boolean someoneWon = checkForWinner(givenPlayer);
+		//boolean checkForTie = checkForTie(someoneWon);
 		
+		return someoneWon;
 		
 	}
 	/* This method checks the board for if the given player won. Returns true if won */
@@ -86,7 +88,27 @@ public class GameFunction {
 			}
 		}
 		
+		
 		//if no winner found:
+		return false;
+	}
+	
+	//check if board is full and no winner found
+	boolean checkForTie(boolean someoneWon) {
+		boolean allSpacesFull = true;
+		
+		//check if board is full
+		for(int i = 0; i<3; i++) {
+			for(int j = 0; j<3; j++) {
+				if(functionalBoard[i][j] == 0) {
+					allSpacesFull = false;
+				}
+			}
+		}
+		//if the board is full and no winner: return tie
+		if(allSpacesFull && !someoneWon) {
+			return true;
+		}
 		return false;
 	}
 }

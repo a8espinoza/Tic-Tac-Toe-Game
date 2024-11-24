@@ -29,7 +29,7 @@ public class WinMenu extends JFrame implements ActionListener{
 		Color darkGrayColor = new Color(35,35,35); 
 
 	
-	public WinMenu(Point location, Boolean winningPlayer, int gameNum, int player1Score, int player2Score) {
+	public WinMenu(Point location, Boolean winningPlayer, int gameNum, int player1Score, int player2Score, boolean tie) {
 		this.gameNum = gameNum;
 		this.player1Score = player1Score;
 		this.player2Score = player2Score;
@@ -62,15 +62,20 @@ public class WinMenu extends JFrame implements ActionListener{
 		newGameButton.setBounds(150, 350, 300, 100);
 		newGameButton.setText("Play Again?");
 
-		
-		//case for player 2 (because it switches before checking)
-		if(winningPlayer) {
-			winField.setText("!!Player 2 WINS!!");
-			this.player2Score++;
-		//case for player 1
+		//check for tie before declaring winner
+		if(tie) {
+			winField.setText("!!Draw!!");
 		}else {
-			winField.setText("!!Player 1 WINS!!");
-			this.player1Score++;
+			//case for player 2 (because it switches before checking)
+			if(winningPlayer) {
+				winField.setText("!!Player 2 WINS!!");
+				this.player2Score++;
+			//case for player 1
+			}else {
+				winField.setText("!!Player 1 WINS!!");
+				this.player1Score++;
+			}
+
 		}
 		
 		

@@ -25,7 +25,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	JTextField gameNumField, scoreField;
 	JTextField[] textFields = new JTextField[3];
 	boolean playerTurn; //true = p1, false = p2
-	boolean winner;
+	boolean winner, tie;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2;
 	int gameNum, player1Score, player2Score;
@@ -166,9 +166,21 @@ public class GameMenu extends JFrame implements ActionListener{
 			//open win menu
 			location = gameFrame.getLocation();
 			@SuppressWarnings("unused")
-			WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score);
+			WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false);
 			gameFrame.setVisible(false); //disable for comparison
 
+		}
+	}
+	
+	public void checkForTie(boolean tie) {
+		if(tie) {
+			System.out.println("Game ends in Tie!");
+			
+			//open win menu with no winner
+			location = gameFrame.getLocation();
+			@SuppressWarnings("unused")
+			WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true);
+			gameFrame.setVisible(false);
 		}
 	}
 
@@ -189,7 +201,10 @@ public class GameMenu extends JFrame implements ActionListener{
 				playerTurnField.setText("Player 1");
 			}
 			
-			//edit button and check for winner
+			//edit button and check for winner and tie
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			a1.setEnabled(false);
 			checkForWinner(winner);
 
@@ -213,6 +228,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			b1.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -235,6 +253,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			c1.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -257,6 +278,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			a2.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -279,6 +303,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			b2.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -301,6 +328,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			c2.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -323,6 +353,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			a3.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -345,6 +378,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			b3.setEnabled(false);
 			checkForWinner(winner);
 		}
@@ -367,6 +403,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			tie = functionalGame.checkForTie(winner);
+			checkForTie(tie);
+
 			c3.setEnabled(false);
 			checkForWinner(winner);
 		}
