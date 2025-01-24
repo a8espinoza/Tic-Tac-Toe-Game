@@ -48,7 +48,7 @@ public class GameMenu extends JFrame implements ActionListener{
 		this.player1Score = player1Score;
 		this.player2Score = player2Score;
 		
-		 //Generate Frame
+		//Generate Frame
 		gameFrame = new JFrame("Game");
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setSize(600, 620); //+25 for title bar

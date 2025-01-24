@@ -65,7 +65,16 @@ public class MainMenu implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//2 player mode
 		if(e.getSource() == multiPlayer) {
+			location = menuFrame.getLocation();
+			@SuppressWarnings("unused")
+			GameMenu gameMenu = new GameMenu(location, 1, 0, 0);
+			menuFrame.setVisible(false); //disable for comparison
+		}
+
+		//1 player mode
+		if(e.getSource() == singlePlayer) {
 			location = menuFrame.getLocation();
 			@SuppressWarnings("unused")
 			GameMenu gameMenu = new GameMenu(location, 1, 0, 0);

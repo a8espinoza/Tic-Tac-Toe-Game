@@ -95,8 +95,8 @@ public class GameFunction {
 	
 	//check if board is full and no winner found
 	boolean checkForTie(boolean someoneWon) {
+
 		boolean allSpacesFull = true;
-		
 		//check if board is full
 		for(int i = 0; i<3; i++) {
 			for(int j = 0; j<3; j++) {
