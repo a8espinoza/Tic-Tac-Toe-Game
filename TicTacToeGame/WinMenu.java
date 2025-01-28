@@ -92,7 +92,7 @@ public class WinMenu extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == newGameButton) {
 			location = winFrame.getLocation();
-			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score);
+			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, 2);
 			winFrame.setVisible(false);
 		}
 		

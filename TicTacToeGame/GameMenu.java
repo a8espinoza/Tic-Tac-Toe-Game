@@ -27,7 +27,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	boolean playerTurn; //true = p1, false = p2
 	boolean winner, tie;
 	GameFunction functionalGame = new GameFunction();
-	int player1, player2;
+	int player1, player2, mode;
 	int gameNum, player1Score, player2Score;
 	Point location;
 	
@@ -43,10 +43,12 @@ public class GameMenu extends JFrame implements ActionListener{
 	Color darkGrayColor = new Color(35,35,35); 
 	
 	//constructor
-	public GameMenu(Point location, int gameNum, int player1Score, int player2Score) {
+	public GameMenu(Point location, int gameNum, int player1Score, int player2Score, int mode) {
 		this.gameNum = gameNum;
 		this.player1Score = player1Score;
 		this.player2Score = player2Score;
+		//Mode: 2 = 2 player, 1 = single player
+		this.mode = mode;
 		
 		//Generate Frame
 		gameFrame = new JFrame("Game");
@@ -161,26 +163,41 @@ public class GameMenu extends JFrame implements ActionListener{
 			for(int i=0; i<9; i++) {
 				tiles[i].setEnabled(false);
 			}
-			System.out.println("Winner found");
+			System.out.println("Winner found"); //print in terminal
 			
 			//open win menu
 			location = gameFrame.getLocation();
-			@SuppressWarnings("unused")
-			WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false);
-			gameFrame.setVisible(false); //disable for comparison
+			//2 player winscreen 
+			if(mode == 2){
+				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false);
+				gameFrame.setVisible(false); //disable for comparison
+			//Single player win screen (STILL NEED TO EDIT)
+			}else{
+				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false);
+				gameFrame.setVisible(false); //disable for comparison
+			}
 
 		}
 	}
 	
 	public void checkForTie(boolean tie) {
 		if(tie) {
-			System.out.println("Game ends in Tie!");
+			System.out.println("Game ends in Tie!"); //in terminal
 			
 			//open win menu with no winner
 			location = gameFrame.getLocation();
-			@SuppressWarnings("unused")
-			WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true);
-			gameFrame.setVisible(false);
+
+						//STILL NEED TO EDIT!!!!
+			//2 player tie screen
+			if(mode == 2){
+				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true);
+				gameFrame.setVisible(false);
+	
+			//single player tie screen
+			}else{
+				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true);
+				gameFrame.setVisible(false);
+			}
 		}
 	}
 
@@ -227,7 +244,12 @@ public class GameMenu extends JFrame implements ActionListener{
 				playerTurnField.setText("Player 1");
 			}
 			
-			//edit button and check for winner
+			//Single player mode: AI functionality
+			if(mode == 2 && playerTurn == false){
+				//AI Shit here
+			}
+
+			//edit button and check for winner after each action
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
