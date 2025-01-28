@@ -69,7 +69,7 @@ public class MainMenu implements ActionListener{
 		if(e.getSource() == multiPlayer) {
 			location = menuFrame.getLocation();
 			@SuppressWarnings("unused")
-			GameMenu gameMenu = new GameMenu(location, 1, 0, 0);
+			GameMenu gameMenu = new GameMenu(location, 1, 0, 0, 2);
 			menuFrame.setVisible(false); //disable for comparison
 		}
 
@@ -77,7 +77,7 @@ public class MainMenu implements ActionListener{
 		if(e.getSource() == singlePlayer) {
 			location = menuFrame.getLocation();
 			@SuppressWarnings("unused")
-			GameMenu gameMenu = new GameMenu(location, 1, 0, 0);
+			GameMenu gameMenu = new GameMenu(location, 1, 0, 0, 1);
 			menuFrame.setVisible(false); //disable for comparison
 		}
 	}

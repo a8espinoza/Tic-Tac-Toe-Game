@@ -111,4 +111,82 @@ public class GameFunction {
 		}
 		return false;
 	}
+
+		/* This method checks the board for if the bot has 2 in a row. Returns true if won */
+		int[] FoundTile = new int[2];
+		boolean checkForTwoInARow(int givenPlayer) {
+			//boolean rowsGood = true, columnsGood = true, diagonalsGood = true;
+			int count = 0;
+			
+			//check rows
+			for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					if(functionalBoard[i][j] == givenPlayer) {
+						count++;
+						/*	need a way to collect the given row so that
+							I can find the given tile thats empty
+							so that the bot can play that as its last move
+						*/
+
+						System.out.println("Count: " + count);
+					}else if(count == 2){
+						FoundTile[0] = i;
+						FoundTile[1] = j;
+					}
+				}
+					
+			
+				//after iterating through one row: check if its at least two
+				if(count >= 2) {
+					return true;
+				}else {
+					count = 0;
+					System.out.println("Count: " + count);
+	
+				}
+			}
+			
+			//check columns
+			for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					if(functionalBoard[j][i] == givenPlayer) {
+							count++;
+							System.out.println("Count: " + count);
+	
+					}else if(count == 2){
+						FoundTile[0] = i;
+						FoundTile[1] = j;
+					}
+				}
+				//after iterating through one column: check if its atleast 2
+				if(count >= 2) {
+					return true;
+				}else {
+					count = 0;
+					//System.out.println("Count: " + count);
+	
+				}
+			}
+							//WRONG
+			//check top down  diagonal
+			if(functionalBoard[0][0] == givenPlayer) {
+				if(functionalBoard[1][1] == givenPlayer) {
+					if(functionalBoard[2][2] == givenPlayer) {
+						return true;
+					}
+				}
+			}
+			//check bottom up  diagonal
+			if(functionalBoard[0][2] == givenPlayer) {
+				if(functionalBoard[1][1] == givenPlayer) {
+					if(functionalBoard[2][0] == givenPlayer) {
+						return true;
+					}
+				}
+			}
+			
+			
+			//if no winner found:
+			return false;
+		}
 }
