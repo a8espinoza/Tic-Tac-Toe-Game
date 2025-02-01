@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class WinMenu extends JFrame implements ActionListener{
+	public static Object c1;
 	//panels and such
 	JFrame winFrame;
 	JTextField winField;

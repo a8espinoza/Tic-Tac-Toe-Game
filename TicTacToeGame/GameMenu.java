@@ -201,6 +201,20 @@ public class GameMenu extends JFrame implements ActionListener{
 		}
 	}
 
+	JButton boardPosition(int a, int b){
+		if(a == 0 && b == 0) return a1;
+		else if(a == 0 && b == 1) return a2;
+		else if(a == 0 && b == 2) return a3;
+		else if(a == 1 && b == 0) return b1;
+		else if(a == 1 && b == 1) return b2;
+		else if(a == 1 && b == 2) return b3;
+		else if(a == 2 && b == 0) return c1;
+		else if(a == 2 && b == 1) return c2;
+		else if(a == 2 && b == 2) return c3;
+		
+		else return null;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//9 primary  buttons
@@ -211,6 +225,17 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 0, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == 1){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				a1.setText("O");
 				winner = functionalGame.nextTurn(player2, 0, 0);
