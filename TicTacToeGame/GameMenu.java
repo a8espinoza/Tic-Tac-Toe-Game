@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InterruptedIOException;
 
+import javax.print.DocFlavor.STRING;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	boolean winner, tie;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2, mode;
+	int SinglePlayer = 1, multiPlayer = 2;
 	int gameNum, player1Score, player2Score;
 	Point location;
 	
@@ -227,11 +229,13 @@ public class GameMenu extends JFrame implements ActionListener{
 				playerTurnField.setText("Player 2");
 
 				//If playing in single player: also make moves for bot (player 2)
-				if(this.mode == 1){
+				if(this.mode == SinglePlayer){
 					//wait(2000);
 					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
 					JButton position = boardPosition(botmove[0], botmove[1]);
 					position.setText("O");
+					position.setEnabled(false);
 					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
 					playerTurn = !playerTurn;
 					playerTurnField.setText("Player 1");
@@ -262,6 +266,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 0, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				b1.setText("O");
 				winner = functionalGame.nextTurn(player2, 0, 1);
@@ -292,6 +309,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 0, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				c1.setText("O");
 				winner = functionalGame.nextTurn(player2, 0, 2);
@@ -317,6 +347,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				a2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 0);
@@ -342,6 +385,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				b2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 1);
@@ -367,6 +423,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				c2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 2);
@@ -392,6 +461,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				a3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 0);
@@ -417,6 +499,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				b3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 1);
@@ -442,6 +537,19 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
+
+				//If playing in single player: also make moves for bot (player 2)
+				if(this.mode == SinglePlayer){
+					//wait(2000);
+					int[] botmove = functionalGame.movePlayer2Bot();
+					System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
+					JButton position = boardPosition(botmove[0], botmove[1]);
+					position.setText("O");
+					position.setEnabled(false);
+					winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
+					playerTurn = !playerTurn;
+					playerTurnField.setText("Player 1");
+				}
 			}else {					//player 2
 				c3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 2);
