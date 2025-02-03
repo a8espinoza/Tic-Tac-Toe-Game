@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.stream.IntStream;
 
 /*
  * This class is designed to contain the functionality portion of the tic tac toe game, ie it
