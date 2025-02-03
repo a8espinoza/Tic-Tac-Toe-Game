@@ -105,14 +105,7 @@ public class WinMenu extends JFrame implements ActionListener{
 		if(e.getSource() == newGameButton) {
 			location = winFrame.getLocation();
 			winFrame.setVisible(false);
-			if(mode == multiPlayer){
-				GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, multiPlayer);
-			}
-			if(mode == singlePlayer){
-				GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, singlePlayer);
-			}
+			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, this.mode);
 		}
-		
 	}
-
 }
