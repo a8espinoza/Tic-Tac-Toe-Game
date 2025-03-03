@@ -1,3 +1,4 @@
+import java.util.Random;
 
 /*
  * This class is designed to contain the functionality portion of the tic tac toe game, ie it
@@ -7,7 +8,7 @@ public class GameFunction {
 	int[][] functionalBoard = new int[3][3];
 	int[] players = new int[2];
 	int player1, player2;
- 	
+	
 	public GameFunction() {
 		player1 = 1;
 		player2 = 2;
@@ -96,7 +97,7 @@ public class GameFunction {
 	//check if board is full and no winner found
 	boolean checkForTie(boolean someoneWon) {
 
-		boolean allSpacesFull = true;
+		boolean allSpacesFull = false;
 		//check if board is full
 		for(int i = 0; i<3; i++) {
 			for(int j = 0; j<3; j++) {
@@ -112,81 +113,63 @@ public class GameFunction {
 		return false;
 	}
 
-		/* This method checks the board for if the bot has 2 in a row. Returns true if won */
-		int[] FoundTile = new int[2];
-		boolean checkForTwoInARow(int givenPlayer) {
-			//boolean rowsGood = true, columnsGood = true, diagonalsGood = true;
-			int count = 0;
-			
-			//check rows
-			for(int i=0; i<3; i++) {
-				for(int j=0; j<3; j++) {
-					if(functionalBoard[i][j] == givenPlayer) {
-						count++;
-						/*	need a way to collect the given row so that
-							I can find the given tile thats empty
-							so that the bot can play that as its last move
-						*/
+	/** Moves the bot (player 2) */
+	int pos1,pos2;
+	Random random = new Random();
+	boolean positionFound = false;
+	int[] movePlayer2Bot(){
+		//check if the board is full
+		boolean hasEmptySpace = false;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if(functionalBoard[i][j] == 0) {
+					hasEmptySpace = true;
+					break;
+				}
+			}
+			//if we find empty space: break and find random position
+			if(hasEmptySpace) {
+				break;
+			}
 
-						System.out.println("Count: " + count);
-					}else if(count == 2){
-						FoundTile[0] = i;
-						FoundTile[1] = j;
-					}
-				}
-					
-			
-				//after iterating through one row: check if its at least two
-				if(count >= 2) {
-					return true;
-				}else {
-					count = 0;
-					System.out.println("Count: " + count);
-	
-				}
+			// If no empty space is found, return failedPosition
+			if(!hasEmptySpace) {
+				int[] failedPosition = {-1, -1};
+				System.out.println("failedPosition: " + failedPosition[0]
+											    + " " + failedPosition[1]);
+				return failedPosition;
 			}
-			
-			//check columns
-			for(int i=0; i<3; i++) {
-				for(int j=0; j<3; j++) {
-					if(functionalBoard[j][i] == givenPlayer) {
-							count++;
-							System.out.println("Count: " + count);
-	
-					}else if(count == 2){
-						FoundTile[0] = i;
-						FoundTile[1] = j;
-					}
-				}
-				//after iterating through one column: check if its atleast 2
-				if(count >= 2) {
-					return true;
-				}else {
-					count = 0;
-					//System.out.println("Count: " + count);
-	
-				}
-			}
-							//WRONG
-			//check top down  diagonal
-			if(functionalBoard[0][0] == givenPlayer) {
-				if(functionalBoard[1][1] == givenPlayer) {
-					if(functionalBoard[2][2] == givenPlayer) {
-						return true;
-					}
-				}
-			}
-			//check bottom up  diagonal
-			if(functionalBoard[0][2] == givenPlayer) {
-				if(functionalBoard[1][1] == givenPlayer) {
-					if(functionalBoard[2][0] == givenPlayer) {
-						return true;
-					}
-				}
-			}
-			
-			
-			//if no winner found:
-			return false;
 		}
+		//generate random position (knowing its not empty)
+		while(!positionFound){
+			pos1 = random.nextInt(3);
+			pos2 = random.nextInt(3);
+			System.out.println("Position1: "+ pos1 +" Position2: "+ pos2);
+	
+			if(functionalBoard[pos1][pos2] == 0){
+				functionalBoard[pos1][pos2] = 2;
+				positionFound = true;
+				int[] position = {pos1, pos2};
+				System.out.println("Position: "+position[0] +" "+ position[1]);
+				return position;
+			}
+			printBoard();
+		}
+
+		//fallback (should never happen)
+		int[] failedPosition = {-1, -1};
+		System.out.println("failedPosition: "+ failedPosition);
+		return failedPosition;
+	}
+
+	//print board for debugging
+	void printBoard() {
+		for(int i = 0; i<3; i++) {
+			for(int j = 0; j<3; j++) {
+				System.out.print(functionalBoard[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+		
 }

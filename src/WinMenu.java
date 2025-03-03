@@ -9,14 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-@SuppressWarnings("serial")
 public class WinMenu extends JFrame implements ActionListener{
+	public static Object c1;
 	//panels and such
 	JFrame winFrame;
 	JTextField winField;
 	JButton newGameButton;
 	Point location;
-	int gameNum, player1Score, player2Score; 
+	int gameNum, player1Score, player2Score, mode; 
+	int singlePlayer = 1, multiPlayer = 2;
 	
 	//fonts and color management 
 		Font mainFont = new Font("Verdana", Font.PLAIN, 30);
@@ -29,10 +30,11 @@ public class WinMenu extends JFrame implements ActionListener{
 		Color darkGrayColor = new Color(35,35,35); 
 
 	
-	public WinMenu(Point location, Boolean winningPlayer, int gameNum, int player1Score, int player2Score, boolean tie) {
+	public WinMenu(Point location, Boolean winningPlayer, int gameNum, int player1Score, int player2Score, boolean tie, int mode) {
 		this.gameNum = gameNum;
 		this.player1Score = player1Score;
 		this.player2Score = player2Score;
+		this.mode = mode;
 		
 		winFrame = new JFrame("Winner!");
 		winFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +67,7 @@ public class WinMenu extends JFrame implements ActionListener{
 		//check for tie before declaring winner
 		if(tie) {
 			winField.setText("!!Draw!!");
-		}else {
+		}else if(mode == multiPlayer){
 			//case for player 2 (because it switches before checking)
 			if(winningPlayer) {
 				winField.setText("!!Player 2 WINS!!");
@@ -75,7 +77,16 @@ public class WinMenu extends JFrame implements ActionListener{
 				winField.setText("!!Player 1 WINS!!");
 				this.player1Score++;
 			}
-
+		}else{
+			//case for bot (because it switches before checking)
+			if(winningPlayer) {
+				winField.setText("You Loose :( Sorry");
+				this.player2Score++;
+			//case for player 1
+			}else {
+				winField.setText("!!YOU WIN!!");
+				this.player1Score++;
+			}
 		}
 		
 		
@@ -88,14 +99,13 @@ public class WinMenu extends JFrame implements ActionListener{
 	}
 	
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == newGameButton) {
 			location = winFrame.getLocation();
-			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, 2);
 			winFrame.setVisible(false);
+			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, this.mode);
 		}
-		
 	}
-
 }
