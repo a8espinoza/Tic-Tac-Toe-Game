@@ -153,12 +153,23 @@ public class GameFunction {
 				System.out.println("Position: "+position[0] +" "+ position[1]);
 				return position;
 			}
+			printBoard();
 		}
 
 		//fallback (should never happen)
 		int[] failedPosition = {-1, -1};
 		System.out.println("failedPosition: "+ failedPosition);
 		return failedPosition;
+	}
+
+	//print board for debugging
+	void printBoard() {
+		for(int i = 0; i<3; i++) {
+			for(int j = 0; j<3; j++) {
+				System.out.print(functionalBoard[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 		
 }
