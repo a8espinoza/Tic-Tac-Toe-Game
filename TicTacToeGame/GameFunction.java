@@ -97,7 +97,7 @@ public class GameFunction {
 	//check if board is full and no winner found
 	boolean checkForTie(boolean someoneWon) {
 
-		boolean allSpacesFull = true;
+		boolean allSpacesFull = false;
 		//check if board is full
 		for(int i = 0; i<3; i++) {
 			for(int j = 0; j<3; j++) {
@@ -118,24 +118,44 @@ public class GameFunction {
 	Random random = new Random();
 	boolean positionFound = false;
 	int[] movePlayer2Bot(){
-		pos1 = random.nextInt(3);
-		pos2 = random.nextInt(3);
-		System.out.println("Position1: "+ pos1 +" Position2: "+ pos2);
+		//check if the board is full
+		boolean hasEmptySpace = false;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if(functionalBoard[i][j] == 0) {
+					hasEmptySpace = true;
+					break;
+				}
+			}
+			//if we find empty space: break and find random position
+			if(hasEmptySpace) {
+				break;
+			}
 
+			// If no empty space is found, return failedPosition
+			if(!hasEmptySpace) {
+				int[] failedPosition = {-1, -1};
+				System.out.println("failedPosition: " + failedPosition[0]
+											    + " " + failedPosition[1]);
+				return failedPosition;
+			}
+		}
+		//generate random position (knowing its not empty)
 		while(!positionFound){
+			pos1 = random.nextInt(3);
+			pos2 = random.nextInt(3);
+			System.out.println("Position1: "+ pos1 +" Position2: "+ pos2);
+	
 			if(functionalBoard[pos1][pos2] == 0){
 				functionalBoard[pos1][pos2] = 2;
 				positionFound = true;
 				int[] position = {pos1, pos2};
 				System.out.println("Position: "+position[0] +" "+ position[1]);
 				return position;
-			}else{
-				pos1 = random.nextInt(3);
-				pos2 = random.nextInt(3);
-				System.out.println("Position1: "+ pos1 +" Position2: "+ pos2);
-
 			}
 		}
+
+		//fallback (should never happen)
 		int[] failedPosition = {-1, -1};
 		System.out.println("failedPosition: "+ failedPosition);
 		return failedPosition;
