@@ -19,9 +19,9 @@ public class GameFunction {
 	}
 	
 	//return true if game over
-	boolean nextTurn(int givenPlayer, int xPos, int yPos) {
+	boolean nextTurn(int givenPlayer, int row, int column) {
 		//add given players piece to the board
-		functionalBoard[xPos][yPos] = givenPlayer;
+		functionalBoard[row][column] = givenPlayer;
 		
 		//if given player won: end game
 		boolean someoneWon = checkForWinner(givenPlayer);

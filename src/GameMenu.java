@@ -24,7 +24,7 @@ public class GameMenu extends JFrame implements ActionListener{
 	boolean winner, tie;
 	GameFunction functionalGame = new GameFunction();
 	int player1, player2, mode;
-	int SinglePlayer = 1, multiPlayer = 2;
+	int singlePlayer = 1, multiPlayer = 2;
 	int gameNum, player1Score, player2Score;
 	Point location;
 	
@@ -215,12 +215,12 @@ public class GameMenu extends JFrame implements ActionListener{
 	}
 	/** If playing in single player: also make moves for bot (player 2) */
 	void botMoveIfSinglePlayer(){
-		if(this.mode == SinglePlayer){
+		if(this.mode == singlePlayer){
 			
 			//wait(2000);
 			int[] botmove = functionalGame.movePlayer2Bot();
 			System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]); 
-			boardPosition(botmove[0], botmove[1]).setText("O"); //this fails because -1,-1 does not exist
+			boardPosition(botmove[0], botmove[1]).setText("O"); 
 			boardPosition(botmove[0], botmove[1]).setEnabled(false);
 			winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
 			playerTurn = !playerTurn;
@@ -245,6 +245,7 @@ public class GameMenu extends JFrame implements ActionListener{
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 1");
 			}
+			
 			
 			//edit button and check for winner and tie
 			botMoveIfSinglePlayer();
