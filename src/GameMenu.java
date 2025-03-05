@@ -225,6 +225,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
 			playerTurn = !playerTurn;
 			playerTurnField.setText("Player 1");
+			functionalGame.printBoard();
 		}
 	}
 
@@ -265,8 +266,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 0, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				b1.setText("O");
 				winner = functionalGame.nextTurn(player2, 0, 1);
@@ -297,9 +296,7 @@ public class GameMenu extends JFrame implements ActionListener{
 				c1.setText("X");
 				winner = functionalGame.nextTurn(player1, 0, 2);
 				playerTurn = !playerTurn;
-				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-			
+				playerTurnField.setText("Player 2");			
 			}else {					//player 2
 				c1.setText("O");
 				winner = functionalGame.nextTurn(player2, 0, 2);
@@ -326,8 +323,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				a2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 0);
@@ -336,6 +331,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
@@ -353,8 +349,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				b2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 1);
@@ -363,6 +357,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
@@ -380,8 +375,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 1, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				c2.setText("O");
 				winner = functionalGame.nextTurn(player2, 1, 2);
@@ -390,6 +383,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
@@ -407,8 +401,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 0);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				a3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 0);
@@ -417,6 +409,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
@@ -434,8 +427,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 1);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				b3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 1);
@@ -444,6 +435,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 
@@ -461,8 +453,6 @@ public class GameMenu extends JFrame implements ActionListener{
 				winner = functionalGame.nextTurn(player1, 2, 2);
 				playerTurn = !playerTurn;
 				playerTurnField.setText("Player 2");
-				botMoveIfSinglePlayer();
-
 			}else {					//player 2
 				c3.setText("O");
 				winner = functionalGame.nextTurn(player2, 2, 2);
@@ -471,6 +461,7 @@ public class GameMenu extends JFrame implements ActionListener{
 			}
 			
 			//edit button and check for winner
+			botMoveIfSinglePlayer();
 			tie = functionalGame.checkForTie(winner);
 			checkForTie(tie);
 

@@ -40,7 +40,7 @@ public class GameFunction {
 			for(int j=0; j<3; j++) {
 				if(functionalBoard[i][j] == givenPlayer) {
 						count++;
-						System.out.println("Count: " + count);
+						//System.out.println("Count: " + count);
 				}
 				//else break;
 			}
@@ -49,7 +49,7 @@ public class GameFunction {
 				return true;
 			}else {
 				count = 0;
-				System.out.println("Count: " + count);
+				//System.out.println("Count: " + count);
 
 			}
 		}
@@ -58,7 +58,7 @@ public class GameFunction {
 			for(int j=0; j<3; j++) {
 				if(functionalBoard[j][i] == givenPlayer) {
 						count++;
-						System.out.println("Count: " + count);
+						//System.out.println("Count: " + count);
 
 				}
 				//else break;
@@ -115,11 +115,12 @@ public class GameFunction {
 	}
 
 	/** Moves the bot (player 2) */
-	int pos, pos1, pos2;
-	Random random = new Random();
-	ArrayList<int[]> emptySpaces = new ArrayList<int[]>();
-	boolean positionFound = false;
 	int[] movePlayer2Bot(){
+		//needed stuff
+		int pos, pos1, pos2;
+		Random random = new Random();
+		ArrayList<int[]> emptySpaces = new ArrayList<int[]>();
+		boolean positionFound = false;
 		//add all empty spaces to a list
 		boolean hasEmptySpace = false;
 		for (int i = 0; i < 3; i++) {
@@ -159,7 +160,7 @@ public class GameFunction {
 
 		//fallback (should never happen)
 		int[] failedPosition = {-1, -1};
-		System.out.println("failedPosition: "+ failedPosition);
+		System.out.println("Fallback Failed position (should never happen)");
 		return failedPosition;
 	}
 
