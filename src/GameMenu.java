@@ -200,16 +200,16 @@ public class GameMenu extends JFrame implements ActionListener{
 		}
 	}
 
-	JButton boardPosition(int a, int b){
-		if(a == 0 && b == 0) return a1;
-		else if(a == 0 && b == 1) return a2;
-		else if(a == 0 && b == 2) return a3;
-		else if(a == 1 && b == 0) return b1;
-		else if(a == 1 && b == 1) return b2;
-		else if(a == 1 && b == 2) return b3;
-		else if(a == 2 && b == 0) return c1;
-		else if(a == 2 && b == 1) return c2;
-		else if(a == 2 && b == 2) return c3;
+	JButton boardPosition(int row, int column){
+		if(row == 0 && column == 0) return a1;
+		else if(row == 0 && column == 1) return b1; 		//	  a b c
+		else if(row == 0 && column == 2) return c1;			//	 1	
+		else if(row == 1 && column == 0) return a2;			//	 2
+		else if(row == 1 && column == 1) return b2;			//	 3
+		else if(row == 1 && column == 2) return c2;
+		else if(row == 2 && column == 0) return a3;
+		else if(row == 2 && column == 1) return b3;
+		else if(row == 2 && column == 2) return c3;
 		
 		else return null;
 	}
@@ -219,10 +219,9 @@ public class GameMenu extends JFrame implements ActionListener{
 			
 			//wait(2000);
 			int[] botmove = functionalGame.movePlayer2Bot();
-			System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]);
-			JButton position = boardPosition(botmove[0], botmove[1]);
-			position.setText("O");
-			position.setEnabled(false);
+			System.out.println("botmove positions:"+botmove[0]+" "+botmove[1]); 
+			boardPosition(botmove[0], botmove[1]).setText("O"); //this fails because -1,-1 does not exist
+			boardPosition(botmove[0], botmove[1]).setEnabled(false);
 			winner = functionalGame.nextTurn(player2, botmove[0], botmove[1]);
 			playerTurn = !playerTurn;
 			playerTurnField.setText("Player 1");

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 /*
@@ -114,22 +115,20 @@ public class GameFunction {
 	}
 
 	/** Moves the bot (player 2) */
-	int pos1,pos2;
+	int pos, pos1, pos2;
 	Random random = new Random();
+	ArrayList<int[]> emptySpaces = new ArrayList<int[]>();
 	boolean positionFound = false;
 	int[] movePlayer2Bot(){
-		//check if the board is full
+		//add all empty spaces to a list
 		boolean hasEmptySpace = false;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if(functionalBoard[i][j] == 0) {
 					hasEmptySpace = true;
-					break;
+					emptySpaces.add(new int[]{i, j});
+					System.out.println("Empty Space: " + i + " " + j);
 				}
-			}
-			//if we find empty space: break and find random position
-			if(hasEmptySpace) {
-				break;
 			}
 
 			// If no empty space is found, return failedPosition
@@ -142,10 +141,12 @@ public class GameFunction {
 		}
 		//generate random position (knowing its not empty)
 		while(!positionFound){
-			pos1 = random.nextInt(3);
-			pos2 = random.nextInt(3);
+			pos = random.nextInt(emptySpaces.size());
+			pos1 = emptySpaces.get(pos)[0];
+			pos2 = emptySpaces.get(pos)[1];
 			System.out.println("Position1: "+ pos1 +" Position2: "+ pos2);
 	
+			//obtain randomly generated position and return 
 			if(functionalBoard[pos1][pos2] == 0){
 				functionalBoard[pos1][pos2] = 2;
 				positionFound = true;
