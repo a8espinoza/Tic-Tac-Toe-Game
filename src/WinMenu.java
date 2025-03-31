@@ -30,7 +30,8 @@ public class WinMenu extends JFrame implements ActionListener{
 		Color darkGrayColor = new Color(35,35,35); 
 
 	
-	public WinMenu(Point location, Boolean winningPlayer, int gameNum, int player1Score, int player2Score, boolean tie, int mode) {
+	public WinMenu(Point location, Boolean winningPlayer, int gameNum, 
+				   int player1Score, int player2Score, boolean tie, int mode) {
 		this.gameNum = gameNum;
 		this.player1Score = player1Score;
 		this.player2Score = player2Score;
@@ -88,13 +89,12 @@ public class WinMenu extends JFrame implements ActionListener{
 				this.player1Score++;
 			}
 		}
-		
-		
-		
+
 		winFrame.add(winField);
 		winFrame.add(newGameButton);
-
-		System.out.println("WinMenu: gameNum: " + this.gameNum + " player1Score: "+ this.player1Score+ " player2Score: "+this.player2Score);
+		System.out.println("WinMenu: gameNum: " + this.gameNum + 
+						   " player1Score: "+ this.player1Score+ 
+						   " player2Score: "+this.player2Score);
 
 	}
 	
@@ -105,7 +105,8 @@ public class WinMenu extends JFrame implements ActionListener{
 		if(e.getSource() == newGameButton) {
 			location = winFrame.getLocation();
 			winFrame.setVisible(false);
-			GameMenu newGameMenu = new GameMenu(location, ++gameNum, player1Score, player2Score, this.mode);
+			GameMenu newGameMenu = new GameMenu(location, ++gameNum, 
+												player1Score, player2Score, this.mode);
 		}
 	}
 }

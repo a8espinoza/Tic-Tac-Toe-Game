@@ -150,7 +150,9 @@ public class GameMenu extends JFrame implements ActionListener{
 		player2 = 2;
 		winner = false;
 		
-		System.out.println("GameMenu: gameNum: " + this.gameNum + " player1Score: "+ this.player1Score+ " player2Score: "+this.player2Score);
+		System.out.println("GameMenu: gameNum: " + this.gameNum + 
+						   " player1Score: "+ this.player1Score+ 
+						   " player2Score: "+this.player2Score);
 
 	}
 	
@@ -167,11 +169,13 @@ public class GameMenu extends JFrame implements ActionListener{
 			location = gameFrame.getLocation();
 			//2 player winscreen 
 			if(mode == 2){
-				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false, mode);
+				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, 
+											  player1Score, player2Score, false, mode);
 				gameFrame.setVisible(false); //disable for comparison
 			//Single player win screen (STILL NEED TO EDIT)
 			}else{
-				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, false, mode);
+				WinMenu winMenu = new WinMenu(location, playerTurn, gameNum, 
+											  player1Score, player2Score, false, mode);
 				gameFrame.setVisible(false); //disable for comparison
 			}
 
@@ -189,12 +193,14 @@ public class GameMenu extends JFrame implements ActionListener{
 						//STILL NEED TO EDIT!!!!
 			//2 player tie screen
 			if(mode == 2){
-				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true, mode);
+				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, 
+											  player1Score, player2Score, true, mode);
 				gameFrame.setVisible(false);
 	
 			//single player tie screen
 			}else{
-				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, player1Score, player2Score, true, mode);
+				WinMenu tieMenu = new WinMenu(location, playerTurn, gameNum, 
+											  player1Score, player2Score, true, mode);
 				gameFrame.setVisible(false);
 			}
 		}
@@ -468,9 +474,7 @@ public class GameMenu extends JFrame implements ActionListener{
 
 			c3.setEnabled(false);
 			checkForWinner(winner);
-		}
-
-		
+		}		
 	}
 }
 
